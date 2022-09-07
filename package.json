@@ -30,7 +30,8 @@
     "migrate": "node ./dist/migrate",
     "prestart": "npm run build",
     "start": "node -r source-map-support/register .",
-    "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
+    "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
+    "start:watch": "tsc-watch --target es2017 --outDir ./dist --onSuccess \"node .\""
   },
   "repository": {
     "type": "git"
@@ -64,11 +65,12 @@
   },
   "devDependencies": {
     "@loopback/build": "^5.4.1",
-    "source-map-support": "^0.5.19",
+    "@loopback/eslint-config": "^7.0.1",
     "@loopback/testlab": "^3.1.5",
     "@types/node": "^10.17.24",
-    "@loopback/eslint-config": "^7.0.1",
     "eslint": "^7.0.0",
+    "source-map-support": "^0.5.19",
+    "tsc-watch": "^5.0.3",
     "typescript": "~3.9.3"
   }
 }

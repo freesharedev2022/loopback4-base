@@ -112,7 +112,7 @@ export class UserController {
         description: 'The current user profile',
         content: {
           'application/json': {
-            schema: getJsonSchemaRef(User),
+            // schema: getJsonSchemaRef(User),
           },
         },
       },
@@ -122,7 +122,7 @@ export class UserController {
     @inject(AuthenticationBindings.CURRENT_USER)
     currentUser: UserProfile,
   ): Promise<UserProfile> {
-    return Promise.resolve(currentUser);
+    return currentUser;
   }
 }
 
