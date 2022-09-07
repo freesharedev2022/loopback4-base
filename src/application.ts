@@ -78,12 +78,11 @@ export class AuthApplication extends BootMixin(
       },
       paths: {},
       components: {securitySchemes: SECURITY_SCHEME_SPEC},
-      security: [
-        {
-          // secure all endpoints with 'jwt'
-          jwt: [],
-        },
-      ],
+      // security: [
+      //   {
+      //     jwt: [],
+      //   },
+      // ],
       servers: [{url: '/'}],
     });
   }
