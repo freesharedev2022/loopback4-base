@@ -10,6 +10,11 @@ npm run migrate
 npm start
 ```
 
+start local
+```angular2html
+yarn start:watch
+```
+
 
 
 * ### Step1: 

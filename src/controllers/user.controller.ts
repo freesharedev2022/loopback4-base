@@ -1,7 +1,7 @@
 import {authenticate, AuthenticationBindings} from '@loopback/authentication';
 import {inject} from '@loopback/core';
 import {repository} from '@loopback/repository';
-import {get, getJsonSchemaRef, post, requestBody} from '@loopback/rest';
+import {get, getJsonSchemaRef, getModelSchemaRef, post, requestBody} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
 import * as _ from 'lodash';
 import {PasswordHasherBindings, TokenServiceBindings, UserServiceBindings} from '../keys';
@@ -43,7 +43,16 @@ export class UserController {
       }
     }
   })
-  async signup(@requestBody() userData: User) {
+  async signup(@requestBody({
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(User, {
+          title: '',
+          exclude: ['id'],
+        }),
+      },
+    },
+  }) userData: User) {
     validateCredentials(_.pick(userData, ['email', 'password']));
     userData.password = await this.hasher.hashPassword(userData.password)
     const savedUser = await this.userRepository.create(userData);
